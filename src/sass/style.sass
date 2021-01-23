@@ -1,0 +1,158 @@
+@import 'addons/reset'
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
+
+$ff: 'Lato', sans-serif
+$bc_one: #222222
+$bc_two: #F1E4E6
+$bc_three: #FFFFFF
+$border_one: #F16D7F
+
+
+%flex_spbetween
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+%padding_content
+  padding: 0 230px
+
+%product_dark_back
+  background-color: rgba(33,22,22,0.7)
+
+@mixin products_xy ($x, $y)
+  width: $x
+  min-height: $y
+
+@mixin itemBkg ($url)
+  background-image: $url
+
+@mixin txt ($fs, $fw, $lh)
+  font-size: $fs
+  font-weight: $fw
+  line-height: $lh
+
+body
+  font-family: $ff
+
+div.container
+  width: 1600px
+  margin: 0 auto
+
+/* navbar */
+
+.navbar
+  @extend %flex_spbetween
+  @extend %padding_content
+  min-height: 75px
+  background-color: $bc_one
+
+  .brand
+    @extend %flex_spbetween
+    align-items: flex-end
+    width: 111px / 1140px * 100%
+    height: 38px / 75px * 100%
+    padding-bottom: 3px
+
+  .menu
+    @extend %flex_spbetween
+    width: 168px / 1140px * 100%
+    height: 38px / 75px * 100%
+
+/* blockOne */
+
+.block_one
+  @extend %flex_spbetween
+  align-items: flex-end
+  min-height: 764px
+  background-color: $bc_two
+
+  .txt_one
+    @extend %flex_spbetween
+    flex-direction: column
+    justify-content: center
+    border-left: 12px solid $border_one
+    min-height: 92px
+    margin: 290px 331px 381px 0
+    padding-left: 16px
+    align-items: start
+
+    .h1_txt1
+      @include txt(48px, 900, 57.6px)
+      color: $bc_one
+
+    .p_txt1
+      @include txt(32px, 700, 38.4px)
+      color: $bc_one
+
+      span
+        color: $border_one
+
+    a
+      text-decoration: none
+
+/* blockTwo */
+
+.block_two
+  @extend %padding_content
+  padding-bottom: 65px
+  padding-top: 65px
+  min-height: 470px
+  background-color: $bc_three
+
+  .content_two
+    @extend %flex_spbetween
+    align-items: flex-start
+    flex-wrap: wrap
+    min-height: 470px
+
+    .products_for
+      @extend %flex_spbetween
+      @include products_xy(360px, 260px)
+      align-items: flex-start
+      margin-bottom: 30px
+
+    .accessories
+      @include products_xy(1140px, 180px)
+
+    .back_content
+      @include products_xy(360px, 260px)
+      @extend %product_dark_back
+
+
+    .back_content_accessories
+      @include products_xy(1140px, 180px)
+      @extend %product_dark_back
+
+    .itemOneBkg
+      @include itemBkg(url(../image/1-for_women.png))
+
+    .itemTwoBkg
+      @include itemBkg(url(../image/2-for_men.png))
+
+    .itemThreeBkg
+      @include itemBkg(url(../image/3-for_kids.png))
+
+    .itemFourBkg
+      @include itemBkg(url(../image/4-Accessories.png))
+
+    .txt_two
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+
+      .p_txt2
+        @include txt(16px, 400, 19.2px)
+        color: $bc_three
+
+      .h1_txt2
+        @include txt(24px, 700, 28.8px)
+        color: $border_one
+
+      a
+        text-decoration: none
+        text-align: center
+
+
+
+
