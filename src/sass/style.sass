@@ -37,6 +37,11 @@ $active: #ffb200
 $breadcrumbs: #636363
 $border_two: #EBEBEB
 $pagination: #C4C4C4
+$border_three: #EAEAEA
+$card_subtitle: #4D4D4D
+$card_description: #5E5E5E
+$bc_prod_banner: #F7F7F7
+$slide_btn: rgba(42,42,42,0.15)
 
 
 
@@ -122,6 +127,12 @@ $pagination: #C4C4C4
 
 @mixin itemBkg ($url)
   background-image: $url
+
+@mixin line ($width, $thickness, $color, $mar-bot)
+  width: $width
+  border: 0px
+  border-bottom: $thickness solid $color
+  margin: 0 0 $mar-bot 0
 
 /* ========== all ========== */
 
@@ -367,60 +378,57 @@ div.container
         position: relative
         @include size(360px, 419px)
 
-      .add-cart-btn
-        @extend %flex_spbetween
-        position: absolute
-        outline: none
-        width: 165px
-        height: 52px
-        padding: 15px
-        top: 50%
-        left: 50%
-        transform: translate(-50%, -50%)
-        -ms-transform: translate(-50%, -50%)
-        background-color: rgba(0, 0, 0, .0)
-        color: $bc_three
-        font-size: 16px
-        border: 1px solid $bc_three
-        cursor: pointer
-        text-align: center
-        visibility: hidden
-        & svg
-          fill: $bc_three
+.add-cart-btn
+  @extend %flex_spbetween
+  position: absolute
+  outline: none
+  width: 165px
+  height: 52px
+  padding: 15px
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  background-color: rgba(0, 0, 0, .0)
+  color: $bc_three
+  font-size: 16px
+  border: 1px solid $bc_three
+  cursor: pointer
+  text-align: center
+  visibility: hidden
+  & svg
+    fill: $bc_three
+.add-cart-btn:hover
+  border: 1px solid $border_one
+  color: $border_one
+  & svg
+    fill: $border_one
+.add-cart-btn:active
+  border-color: $active
+  color: $active
+  & svg
+    fill: $active
 
-      .add-cart-btn:hover
-        border: 1px solid $border_one
-        color: $border_one
-        & svg
-          fill: $border_one
+.for-add-cart-btn:hover .add-cart-btn
+  visibility: visible
 
-      .add-cart-btn:active
-        border-color: $active
-        color: $active
-        & svg
-          fill: $active
+.for-add-cart-btn:hover .products-item-photo
+  filter: brightness(33%)
 
-      .for-add-cart-btn:hover .add-cart-btn
-        visibility: visible
-
-    .for-add-cart-btn:hover .products-item-photo
-      filter: brightness(33%)
-
-  .products-btn
-    margin-top: 48px
-    outline: none
-    width: 212px
-    height: 48px
-    border: 1px solid $border_one
-    color: $border_one
-    background-color: $bc_three
-    &:hover
-      color: $bc_three
-      background-color: $border_one
-      cursor: pointer
-    &:active
-      background-color: $active
-      border-color: $active
+.products-btn
+  margin-top: 48px
+  outline: none
+  width: 212px
+  height: 48px
+  border: 1px solid $border_one
+  color: $border_one
+  background-color: $bc_three
+  &:hover
+    color: $bc_three
+    background-color: $border_one
+    cursor: pointer
+  &:active
+    background-color: $active
+    border-color: $active
 
 .products-item .products-link
   text-decoration: none
@@ -584,18 +592,12 @@ div.container
     padding: 4px
     @include txt (14px, 300, 17px, $breadcrumbs)
     content: "/\00a0"
-  & li .breadcrumbs-link
+  & .breadcrumbs-link
     @include txt (14px, 300, 17px, $breadcrumbs)
-    //@include txt (14px, 300, 17px, $breadcrumbs)
-    //&:last-child
-    //  @include txt (14px, 700, 17px, $border_one)
-    //  cursor: default
-    //&:active
-    //  color: $border_one
-    //&:hover
-    //  color: $border_one
-    //&:active
-    //  color: $active
+    &:hover
+      color: $border_one
+    &:active
+      color: $breadcrumbs
 
 .arrivals-breadcrumbs .breadcrumbs-link
   text-decoration: none
@@ -615,46 +617,45 @@ div.container
     display: inline-block
     position: relative
 
-  .fas
-    color: inherit
-    padding-left: 10px
+.fas-submenu
+  padding-left: 10px
 
-  .submenu
-    @extend %catalog-submenu
-    @include size(361px, 535px)
-    margin: -43.6% 0 0 -25%
+.submenu
+  @extend %catalog-submenu
+  @include size(361px, 535px)
+  margin: -43.6% 0 0 -25%
 
-  .submenu-form
-    @extend %catalog-submenu
-    @include size(79px, 103px)
-    margin: 10% 0 0 -17%
-    @include txt (14px, 400, 16px, $li_two)
-    & input
-      margin: 7px 5px 7px 8px
-    & p
-      display: flex
-      align-items: center
+.submenu-form
+  @extend %catalog-submenu
+  @include size(79px, 103px)
+  margin: 10% 0 0 -17%
+  @include txt (14px, 400, 16px, $li_two)
+  & input
+    margin: 7px 5px 7px 8px
+  & p
+    display: flex
+    align-items: center
 
-  .submenu-dropdown:hover .submenu,
-  .submenu-dropdown:hover .submenu-form
-    visibility: visible
+.submenu-dropdown:hover .submenu,
+.submenu-dropdown:hover .submenu-form
+  visibility: visible
 
-  .submenu-dropdown
-    @include txt (14px, 600, 17px, $li_two)
-    text-transform: uppercase
-    &:hover
-      color: $border_one
+.submenu-dropdown
+  @include txt (14px, 400, 17px, $li_two)
+  text-transform: uppercase
+  &:hover
+    color: $border_one
   & .filter-svg
     margin-left: 8px
     fill: $li_two
 
-  .topmenu
-    margin-right: 28px
-    margin-bottom: 34px
-    cursor: default
-    &:first-child
-      margin-left: 16px
-      margin-right: 305px
+.topmenu
+  margin-right: 28px
+  margin-bottom: 34px
+  cursor: default
+  &:first-child
+    margin-left: 16px
+    margin-right: 305px
 
 .submenu-list .submenu-points
   margin-top: 16px
@@ -712,33 +713,110 @@ div.container
     @include txt(16px, 300, 19px, $pagination)
     text-decoration: none
     &:hover
+      color: $li_one
+    &:active
       color: $border_one
   .active
     color: $border_one
 
-  & .cat-pag-angle
+.cat-pag-angle
+  color: $li_one
+  &:hover
+    color: $border_one
+  &:active
     color: $li_one
-    &:hover
-      color: $li_one
-    &:active
-      color: $border_one
 
-  .angle-btn
-    background-color: $bc_three
-    border: none
-    outline: none
-    cursor: pointer
+.angle-btn
+  background-color: $bc_three
+  border: none
+  outline: none
+  cursor: pointer
 
+/* ========== Product page ========== */
 
+/* ========== product-banner ========== */
 
+.product-banner
+  min-height: 777px
+  @extend %flex_spbetween
+  background-color: $bc_prod_banner
+  & img
+    margin-bottom: 25px
 
+.slide-btn
+  @include size(47px, 47px)
+  background-color: $slide_btn
+  & .cat-pag-angle
+    font-size: 25px
 
+.slide-btn:hover .cat-pag-angle
+  color: $border-one
 
+.slide-btn:active .cat-pag-angle
+  color: $li_one
 
+/* ========== product-card ========== */
 
+.product-prod
+  min-height: 1350px
+  align-items: normal
+  & .products-block
+    margin-top: 80px
 
+.product-card
+  min-height: 600px
+  @extend %column_content
+  border: 1px solid $border_three
+  margin-top: -17.5%
+  background-color: $bc_three
+  & .prod-card-title
+    @include txt (14px, 300, 17px, $border_one)
+    text-transform: uppercase
+    margin-bottom: 12px
+  & .card-line
+    @include line (63px, 3px, $border_one, 12px)
+  & .prod-card-subtitle
+    @include txt (18px, 300, 22px, $card_subtitle)
+    text-transform: uppercase
+    margin-bottom: 48px
+  & .prod-card-description
+    @include txt (14px, 300, 17px, $card_description)
+    width: 555px
+    margin-bottom: 32px
+    text-align: center
+  & .prod-card-price
+    @include txt (24px, 300, 29px, $border_one)
+    margin-bottom: 64px
+  & .card-line-two
+    @include line (642px, 1px, $border_three, 64px)
+  & .card-submenu
+    @extend %flex_spbetween
+    width: 373px
+    margin-bottom: 48px
+    & .submenu-dropdown:hover
+      cursor: default
 
-
+.prod-add-cart-btn
+  position: static
+  transform: none
+  color: $border_one
+  border: 1px solid $border_one
+  visibility: visible
+  background-color: $bc_three
+  & svg
+    fill: $border_one
+.prod-add-cart-btn:hover
+  border: 1px solid $border_one
+  background-color: $border_one
+  color: $bc_three
+  & svg
+    fill: $bc_three
+.prod-add-cart-btn:active
+  background-color: $active
+  border-color: $active
+  color: $bc_three
+  & svg
+    fill: $bc_three
 
 
 
