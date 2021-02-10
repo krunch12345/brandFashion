@@ -1,5 +1,30 @@
 @import 'addons/reset'
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
+//@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-light.ttf)
+  font-weight: 300
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-regular.ttf)
+  font-weight: 400
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-bold.ttf)
+  font-weight: 700
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-black.ttf)
+  font-weight: 900
+  font-style: normal
+
 @font-face
   font-family: "Font Awesome 5 Brands"
   src: url(../webfonts/fa-brands-400.ttf)
@@ -22,7 +47,7 @@ $bc_two: #F1E4E6
 $bc_three: #FFFFFF
 $bc_four: #E1E1E1
 $bc_five: #F8F3F4
-
+$bc_seven: #F5F3F3
 
 $text_search: #222224
 $border_one: #F16D7F
@@ -42,8 +67,16 @@ $card_subtitle: #4D4D4D
 $card_description: #5E5E5E
 $bc_prod_banner: #F7F7F7
 $slide_btn: rgba(42,42,42,0.15)
+$border_four: #A4A4A4
+$quote_btn: #4A4A4A
+$regist_input_txt: #B1B1B1
+$border_five: #E2E2E2
 
 
+
+%font_famile_site
+  font-family: 'Lato', sans-serif
+  font-style: normal
 
 %flex_spbetween
   display: flex
@@ -137,7 +170,7 @@ $slide_btn: rgba(42,42,42,0.15)
 /* ========== all ========== */
 
 body
-  font-family: $ff
+  @extend %font_famile_site
 
 div.container
   width: 1600px
@@ -231,6 +264,7 @@ div.container
 
     .banner-title
       @extend %flex_spbetween
+      @include size(405px, 93px)
       flex-direction: column
       justify-content: center
       border-left: 12px solid $border_one
@@ -241,7 +275,7 @@ div.container
 
       .banner-link-title
         @extend %link
-        & span
+        & .banner-txt-subtitle
           display: block
 
       .banner-txt-title
@@ -250,21 +284,10 @@ div.container
       .banner-txt-subtitle
         @include txt(32px, 700, 38.4px, $bc_one)
 
-        .span-colored
-          display: inline
-          color: $border_one
-
   .menu
     @include size (230px, 767px)
     background-color: $bc_three
     visibility: hidden
-    & .close-btn
-      @extend %icon
-      background-color: $bc_three
-      fill: $li_two
-      margin: 16px 0 0 203px
-      &:hover
-        fill: $bc_one
 
     .link-menu,
     .sub-link-menu
@@ -296,6 +319,21 @@ div.container
 
   .dropdown
     visibility: visible
+
+.span-colored
+  display: inline
+  color: $border_one
+
+.close-btn
+  @extend %icon
+  background-color: $bc_three
+  fill: $li_two
+  margin: 16px 0 0 203px
+  &:hover
+    fill: $bc_one
+  &:active
+    fill: $li_two
+
 
 /* ========== categories ========== */
 
@@ -773,6 +811,7 @@ div.container
     @include txt (14px, 300, 17px, $border_one)
     text-transform: uppercase
     margin-bottom: 12px
+    text-align: center
   & .card-line
     @include line (63px, 3px, $border_one, 12px)
   & .prod-card-subtitle
@@ -786,9 +825,13 @@ div.container
     text-align: center
   & .prod-card-price
     @include txt (24px, 300, 29px, $border_one)
-    margin-bottom: 64px
-  & .card-line-two
-    @include line (642px, 1px, $border_three, 64px)
+    text-align: center
+    &:after
+      padding-bottom: 64px
+      box-sizing: border-box
+      display: block
+      content: ''
+      @include line (642px, 1px, $border_three, 64px)
   & .card-submenu
     @extend %flex_spbetween
     width: 373px
@@ -817,6 +860,223 @@ div.container
   color: $bc_three
   & svg
     fill: $bc_three
+
+/* ========== Cart page ========== */
+
+/* ========== shopping-cart ========== */
+
+.shopping-cart
+  min-height: 900px
+  background-color: $bc_three
+  @extend %padding_content
+  @extend %flex_spbetween
+  align-items: flex-start
+  margin-top: 98px
+
+  & .carts-product
+    @include size (652px, 774px)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.shopping-cart-product
+  margin-bottom: 40px
+  @extend %flex_spbetween
+  align-items: flex-start
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2)
+
+  & .close-btn
+    margin: 25px 25px 0 0
+
+.cart-product-text
+  display: flex
+  flex-direction: column
+  margin: 22px 0 0 0
+  width: 280px
+
+  & .title-cart-content
+    @include txt(24px, 400, 29px, $bc_one)
+    width: 200px
+    text-transform: uppercase
+    padding-bottom: 42px
+    box-sizing: border-box
+
+  & .cart-product-characteristics
+    @include txt(22px, 400, 26px, $bc_one)
+    padding-bottom: 7px
+    box-sizing: border-box
+
+  & .quantity
+    @include size(35px, 24px)
+    margin-left: 15px
+    @include txt(22px, 400, 26px, $bc_one)
+    text-align: center
+
+.shopping-cart-btn
+  @extend %flex_spbetween
+
+  & .cart-content-btn
+    margin-top: 42px
+    @include txt(14px, 300, 17px, $li_one)
+    text-transform: uppercase
+    @include size(225px, 50px)
+    border: 1px solid $border_four
+    background-color: $bc_three
+    outline: none
+    &:hover
+      background-color: $border_four
+      border: $li_one
+      color: $bc_three
+    &:active
+      border: $border_four
+      background-color: $bc_three
+      color: $li_one
+
+.cart-form,
+.shopping-cart-form
+  display: flex
+  flex-direction: column
+  width: 360px
+
+.shopping-cart-form
+  margin-bottom: 57px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  min-height: 272px
+  & .cart-form-title
+    @include txt(16px, 300, 19px, $bc_one)
+    text-transform: uppercase
+  & .cart-form-input
+    height: 45px
+    border: 1px solid $border_four
+    @include txt(13px, 300, 16px, $bc_one)
+    padding-left: 15px
+  & .cart-form-btn
+    @include size(101px, 35px)
+    text-transform: uppercase
+    @include txt(11px, 300, 13px, $quote_btn)
+    background-color: $bc_three
+    border: 1px solid $border_four
+    outline: none
+    &:hover
+      background-color: $border_four
+      color: $bc_three
+    &:active
+      border-color: $bc_three
+      color: $quote_btn
+      background-color: $bc_three
+
+.shopping-cart-checkout
+  padding: 43px
+  box-sizing: border-box
+  min-height: 214px
+  background-color: $bc_seven
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: flex-end
+  text-transform: uppercase
+  & .cart-checkout-subtotal, .shop-cart-price
+    @include txt(11px, 400, 13px, $quote_btn)
+  & .shop-cart-price, .span-colored
+    padding-left: 30px
+    box-sizing: border-box
+  & .cart-checkout-grandtotal
+    @include txt(16px, 300, 19px, $quote_btn)
+    text-align: end
+    &:after
+      width: 273px
+      padding-bottom: 13px
+      box-sizing: border-box
+      display: block
+      content: ''
+      border-bottom: 1px solid $border_five
+  & .span-colored
+    font-weight: 700
+  & .checkout-btn
+    text-transform: uppercase
+    width: 100%
+    min-height: 50px
+    outline: none
+    border: 1px solid $border_one
+    background-color: $border_one
+    @include txt(16px, 300, 19px, $bc_three)
+    &:hover
+      background-color: $bc_three
+      color: $border_one
+    &:active
+      background-color: $active
+      color: $bc_three
+      border-color: $active
+
+/* ========== Registration page ========== */
+
+/* ========== registration ========== */
+
+.registration
+  min-height: 600px
+  background-color: $bc_three
+  @extend %flex_spbetween
+  @extend %padding_content
+  margin-top: 64px
+  align-items: flex-start
+
+.registration-form
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin-right: 128px
+  min-height: 510px
+  & .registration-form-name, .regist-login
+    width: 100%
+    height: 45px
+    border: 1px solid $border_four
+    @include txt(13px, 300, 16px, $regist_input_txt)
+    padding-left: 15px
+    box-sizing: border-box
+  & .registration-form-name, .regist-login, .registration-name, .registration-login
+    margin-bottom: 20px
+  & .registration-name, .registration-login
+    @include txt(16px, 300, 19px, $bc_one)
+  & .regist-gender
+    @include txt(11px, 300, 13px, $li_one)
+  & .regist-p
+    @include txt(13px, 300, 16px, $regist_input_txt)
+
+.registration-btn
+  @include size(167px, 50px)
+  text-transform: uppercase
+  background-color: $border_one
+  border: 1px solid $border_one
+  @include txt(14px, 400, 17px, $bc_three)
+  & i
+    margin-left: 10px
+  &:hover
+    background-color: $bc_three
+    color: $border_one
+  &:active
+    background-color: $active
+    border-color: $active
+    color: $bc_three
+
+.registration-description
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  @include size(700px, 334px)
+  @include txt(24px, 300, 29px, $li_one)
+  & i
+    margin-right: 15px
+  & .description-title
+    text-transform: uppercase
+  & .description-title, .description-desc
+    margin-bottom: 15px
+
+
+
+
+
 
 
 
