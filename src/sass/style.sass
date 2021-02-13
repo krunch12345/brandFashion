@@ -88,7 +88,6 @@ $border_five: #E2E2E2
 
 %icon
   border: none
-  outline: none
   background-color: $bc_one
   fill: $icon
   &:hover
@@ -133,7 +132,6 @@ $border_five: #E2E2E2
   line-height: 16.8px
   font-size: 14px
   box-sizing: border-box
-  outline: none
   height: 49px
   min-width: $width
   background-color: $back-color
@@ -144,7 +142,6 @@ $border_five: #E2E2E2
   height: $height
   width: $width
   border: none
-  outline: none
   &:hover
     cursor: pointer
 
@@ -173,7 +170,8 @@ body
   @extend %font_famile_site
 
 div.container
-  width: 1600px
+  max-width: 1600px
+  width: 100%
   margin: 0 auto
 
 /* ========== header ========== */
@@ -220,6 +218,7 @@ div.container
       padding: 0 0 0 25px
       border: 0
       margin-bottom: 2px
+
 
     .search-btn
       @include input(100px, $border_one, $bc_three)
@@ -419,7 +418,6 @@ div.container
 .add-cart-btn
   @extend %flex_spbetween
   position: absolute
-  outline: none
   width: 165px
   height: 52px
   padding: 15px
@@ -454,7 +452,6 @@ div.container
 
 .products-btn
   margin-top: 48px
-  outline: none
   width: 212px
   height: 48px
   border: 1px solid $border_one
@@ -767,7 +764,6 @@ div.container
 .angle-btn
   background-color: $bc_three
   border: none
-  outline: none
   cursor: pointer
 
 /* ========== Product page ========== */
@@ -911,6 +907,7 @@ div.container
     margin-left: 15px
     @include txt(22px, 400, 26px, $bc_one)
     text-align: center
+    padding-left: 15px
 
 .shopping-cart-btn
   @extend %flex_spbetween
@@ -922,7 +919,6 @@ div.container
     @include size(225px, 50px)
     border: 1px solid $border_four
     background-color: $bc_three
-    outline: none
     &:hover
       background-color: $border_four
       border: $li_one
@@ -958,7 +954,6 @@ div.container
     @include txt(11px, 300, 13px, $quote_btn)
     background-color: $bc_three
     border: 1px solid $border_four
-    outline: none
     &:hover
       background-color: $border_four
       color: $bc_three
@@ -998,7 +993,6 @@ div.container
     text-transform: uppercase
     width: 100%
     min-height: 50px
-    outline: none
     border: 1px solid $border_one
     background-color: $border_one
     @include txt(16px, 300, 19px, $bc_three)
